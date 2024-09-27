@@ -1,4 +1,4 @@
-import SignUP from '@/components/signup/signup'
+import SignUP from '@/components/major/signup/signup'
 import React from 'react'
 import "../styles/globals.css"
 

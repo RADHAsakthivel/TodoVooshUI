@@ -7,35 +7,28 @@ import {
 
 import SortableItem from "./sortableItem";
 
-const containerStyle = {
-  background: "#dadada",
-  padding: 10,
-  margin: 10,
-  flex: 1
-};
-
 export default function Container(props) {
-  console.log("container =>",props);
-  const { id, items } = props;
+  const { id, items, deleteHandler } = props;
 
   const { setNodeRef } = useDroppable({
     id
   });
 
   return (
-    <>
+    <div className="w-[33%] bg-white p-2 rounded-md shadow-[0px_4px_10px_rgba(0,0,0,0.3)]">
     <SortableContext
       id={id}
       items={items}
       strategy={verticalListSortingStrategy}
     >
-      <div ref={setNodeRef} style={containerStyle}>
-        {items.map((id,i) => (
-          <SortableItem key={id} id={id} />
-          // <div key={i}/>
+      <div 
+      ref={setNodeRef} 
+      >
+        {items.map((item,i) => (
+          <SortableItem key={item.id} id={item.id} item={item} deleteHandler={deleteHandler}/>
         ))}
       </div>
     </SortableContext>
-    </>
+    </div>
   );
 }

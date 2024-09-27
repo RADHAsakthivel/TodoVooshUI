@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from '@/components/login/login'
+import {Login} from '@/components/major'
 import "../styles/globals.css"
 
 function LoginPage() {

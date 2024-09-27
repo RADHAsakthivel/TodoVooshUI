@@ -1,7 +1,7 @@
 import React from "react";
 import { PiNotepadFill } from "react-icons/pi";
 
-import { Button } from "../button";
+import { Button } from "../../shared/button";
 import Link from "next/link";
 
 function Header() {
@@ -12,16 +12,10 @@ function Header() {
       </div>
       <div>
         <Link href="/login">
-          <Button
-            cssClass="text-bgPrimary bg-white m-2 px-[4px] py-[1px] rounded-[5px] hover:bg-bgPrimary hover:text-white hover:border-white hover:border-2"
-          >
-            login
-          </Button>
+          <Button type="DEFAULT">login</Button>
         </Link>
         <Link href="/signup">
-          <Button
-            cssClass="text-white bg-bgPrimary m-2 px-[4px] py-[1px] rounded-[5px] hover:bg-bgPrimary hover:text-white hover:border-white hover:border-2"
-          >
+          <Button type="DEFAULT" cssClass="mr-[10px]">
             signup
           </Button>
         </Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../button";
+import { Button } from "../../shared/button";
 import { FaGoogle } from "react-icons/fa";
 
 function SignUP() {

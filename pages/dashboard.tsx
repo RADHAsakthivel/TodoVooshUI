@@ -1,29 +1,31 @@
-import SearchBar from '@/components/searchBar/searchBar'
-import React from 'react'
-import "@/styles/globals.css"
-import { DragAndDrop } from '@/components/dragAndDrop'
+import SearchBar from "@/components/shared/searchBar/searchBar";
+import React from "react";
+import "@/styles/globals.css";
+import { DragAndDrop } from "@/components/major/dragAndDrop";
+import { Button } from "@/components/shared";
+import { TodoLayout } from "@/components/layout/layout";
 const mock = {
-    "column-1": {
-      title: "To Do",
-      items: [
-        { id: "task-1", content: "Task 1" },
-        { id: "task-2", content: "Task 2" },
-        { id: "task-3", content: "Task 3" },
-        { id: "task-4", content: "Task 4" },
-        { id: "task-5", content: "Task 5" },
-      ],
-    },
-    "column-2": {
-      title: "In Progress",
-      items: [
-        { id: "task-6", content: "Task 6" },
-        { id: "task-7", content: "Task 7" },
-        { id: "task-8", content: "Task 8" },
-        { id: "task-9", content: "Task 9" },
-        { id: "task-10", content: "Task 10" },
-      ],
-    },
-  }
+  "column-1": {
+    title: "To Do",
+    items: [
+      { id: "task-1", content: "Task 1" },
+      { id: "task-2", content: "Task 2" },
+      { id: "task-3", content: "Task 3" },
+      { id: "task-4", content: "Task 4" },
+      { id: "task-5", content: "Task 5" },
+    ],
+  },
+  "column-2": {
+    title: "In Progress",
+    items: [
+      { id: "task-6", content: "Task 6" },
+      { id: "task-7", content: "Task 7" },
+      { id: "task-8", content: "Task 8" },
+      { id: "task-9", content: "Task 9" },
+      { id: "task-10", content: "Task 10" },
+    ],
+  },
+};
 
 const mockTwo = [
   {
@@ -78,14 +80,19 @@ const mockTwo = [
   },
 ];
 
-
 function DashBoard() {
   return (
     <>
-        <SearchBar/>
-        <DragAndDrop data={mock} />
+    {/* TODO:facing hydration failure need to check  */}
+    <TodoLayout>
+      <div className="mt-[20px]">
+        <Button type="DEFAULT">Add Task</Button>
+      </div>
+      <SearchBar />
+      <DragAndDrop data={mockTwo} />
+    </TodoLayout>
     </>
-  )
+  );
 }
 
-export default DashBoard
+export default DashBoard;
