@@ -101,144 +101,180 @@
 // }
 
 
-"use client";
-import React, { useEffect, useState, useRef } from "react";
+// "use client";
+// import React, { useEffect, useState, useRef } from "react";
 
-const TaskEdit = ({ task, onSave, onCancel }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [formValues, setFormValues] = useState(task);
-  const [isClosing, setIsClosing] = useState(false);
+// const TaskEdit = ({ task, onSave, onCancel }) => {
+//   const modalRef = useRef<HTMLDivElement>(null);
+//   const [formValues, setFormValues] = useState(task);
+//   const [isClosing, setIsClosing] = useState(false);
 
-  useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.focus(); // Focus the modal when it mounts
-    }
-  }, []);
+//   useEffect(() => {
+//     if (modalRef.current) {
+//       modalRef.current.focus(); // Focus the modal when it mounts
+//     }
+//   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
-  };
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormValues((prev) => ({ ...prev, [name]: value }));
+//   };
 
-  const handleClose = (e) => {
-    e.stopPropagation(); // Prevent click event from bubbling
-    setIsClosing(true);
-    setTimeout(() => {
-      onCancel();
-    }, 500);
-  };
+//   const handleClose = (e) => {
+//     e.stopPropagation(); // Prevent click event from bubbling
+//     setIsClosing(true);
+//     setTimeout(() => {
+//       onCancel();
+//     }, 500);
+//   };
 
+//   return (
+//     <div
+//       className={`fixed top-0 left-0 h-screen w-screen flex justify-center items-center bg-black bg-opacity-50 transition-opacity duration-500 ${
+//         isClosing ? "opacity-0" : "opacity-100"
+//       }`}
+//       onClick={handleClose} // Close modal on background click
+//     >
+//       <div
+//         ref={modalRef} // Set reference to the modal
+//         tabIndex={-1} // Make the modal focusable
+//         className={`bg-white rounded-md w-[80%] max-w-md p-4 relative transition-transform duration-500 ${
+//           isClosing ? "scale-50 opacity-0" : "scale-100 opacity-100"
+//         }`}
+//         onClick={(e) => e.stopPropagation()} // Prevent clicks in modal from closing it
+//       >
+//         <h2 className="text-xl font-bold">Edit Task</h2>
+//         <div className="mt-4">
+//           <label className="block text-sm mb-1">Title</label>
+//           <input
+//             type="text"
+//             name="title"
+//             value={formValues.title || ""}
+//             onChange={handleInputChange}
+//             placeholder="Task Title"
+//             className="w-full border border-gray-300 p-2 rounded"
+//           />
+//         </div>
+//         <div className="mt-4">
+//           <label className="block text-sm mb-1">Description</label>
+//           <textarea
+//             name="description"
+//             value={formValues.description || ""}
+//             onChange={handleInputChange}
+//             placeholder="Task Description"
+//             className="w-full border border-gray-300 p-2 rounded"
+//             rows={4}
+//           />
+//         </div>
+//         <div className="flex justify-end mt-4">
+//           <button
+//             className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+//             onClick={() => {
+//               onSave(formValues);
+//               handleClose(new MouseEvent("click"));
+//             }}
+//           >
+//             Save
+//           </button>
+//           <button
+//             className="bg-gray-300 text-black px-4 py-2 rounded"
+//             onClick={handleClose}
+//           >
+//             Cancel
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// const TaskCard = ({ task }) => {
+//   const [showTaskEdit, setShowTaskEdit] = useState(false);
+
+//   const editHandler = () => {
+//     setShowTaskEdit(true);
+//     document.body.style.overflow = "hidden"; // Prevent scrolling
+//   };
+
+//   const saveHandler = (updatedTask) => {
+//     setShowTaskEdit(false);
+//     document.body.style.overflow = "auto"; // Restore scrolling
+//   };
+
+//   const cancelHandler = () => {
+//     setShowTaskEdit(false);
+//     document.body.style.overflow = "auto"; // Restore scrolling
+//   };
+
+//   return (
+//     <div className="bg-[#D2E6FA] mb-2 p-4 rounded-lg">
+//       <p>
+//         <strong>Task {task.id}</strong>
+//       </p>
+//       <p>Description: {task.description}</p>
+//       <div className="flex justify-end">
+//         <button
+//           className="bg-blue-500 text-white px-4 py-2 rounded"
+//           onClick={editHandler}
+//         >
+//           Edit
+//         </button>
+//       </div>
+//       {showTaskEdit && (
+//         <TaskEdit
+//           task={task}
+//           onSave={saveHandler}
+//           onCancel={cancelHandler}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// const App = () => {
+//   const task = { id: 1, title: "Sample Task", description: "Task Description" };
+
+//   return (
+//     <div className="p-4">
+//       <TaskCard task={task} />
+//     </div>
+//   );
+// };
+
+// export default App;
+
+
+// pages/tasks.js
+
+
+import React from 'react';
+import "./globals.css"
+
+const TaskPage = () => {
   return (
-    <div
-      className={`fixed top-0 left-0 h-screen w-screen flex justify-center items-center bg-black bg-opacity-50 transition-opacity duration-500 ${
-        isClosing ? "opacity-0" : "opacity-100"
-      }`}
-      onClick={handleClose} // Close modal on background click
-    >
-      <div
-        ref={modalRef} // Set reference to the modal
-        tabIndex={-1} // Make the modal focusable
-        className={`bg-white rounded-md w-[80%] max-w-md p-4 relative transition-transform duration-500 ${
-          isClosing ? "scale-50 opacity-0" : "scale-100 opacity-100"
-        }`}
-        onClick={(e) => e.stopPropagation()} // Prevent clicks in modal from closing it
-      >
-        <h2 className="text-xl font-bold">Edit Task</h2>
-        <div className="mt-4">
-          <label className="block text-sm mb-1">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formValues.title || ""}
-            onChange={handleInputChange}
-            placeholder="Task Title"
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
-        <div className="mt-4">
-          <label className="block text-sm mb-1">Description</label>
-          <textarea
-            name="description"
-            value={formValues.description || ""}
-            onChange={handleInputChange}
-            placeholder="Task Description"
-            className="w-full border border-gray-300 p-2 rounded"
-            rows={4}
-          />
-        </div>
-        <div className="flex justify-end mt-4">
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-            onClick={() => {
-              onSave(formValues);
-              handleClose(new MouseEvent("click"));
-            }}
-          >
-            Save
-          </button>
-          <button
-            className="bg-gray-300 text-black px-4 py-2 rounded"
-            onClick={handleClose}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const TaskCard = ({ task }) => {
-  const [showTaskEdit, setShowTaskEdit] = useState(false);
-
-  const editHandler = () => {
-    setShowTaskEdit(true);
-    document.body.style.overflow = "hidden"; // Prevent scrolling
-  };
-
-  const saveHandler = (updatedTask) => {
-    setShowTaskEdit(false);
-    document.body.style.overflow = "auto"; // Restore scrolling
-  };
-
-  const cancelHandler = () => {
-    setShowTaskEdit(false);
-    document.body.style.overflow = "auto"; // Restore scrolling
-  };
-
-  return (
-    <div className="bg-[#D2E6FA] mb-2 p-4 rounded-lg">
-      <p>
-        <strong>Task {task.id}</strong>
-      </p>
-      <p>Description: {task.description}</p>
-      <div className="flex justify-end">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={editHandler}
+    <section>
+    <div className="flex flex-col h-[100vh] bg-white">
+      {/* Background SVG Pattern */}
+      <div className="absolute bottom-0 left-0 w-full h-[90%] overflow-hidden">
+        <svg
+          className="absolute bottom-0 z-0"
+          viewBox="0 0 1440 320"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          Edit
-        </button>
+          <path
+            d="M0 64L30 85.3C60 107 120 149 180 144C240 139 300 85 360 69.3C420 53 480 75 540 101.3C600 128 660 160 720 165.3C780 171 840 149 900 144C960 139 1020 149 1080 149.3C1140 149 1200 139 1260 133.3C1320 128 1380 128 1410 128L1440 128L1440 320L1410 320C1380 320 1320 320 1260 320C1200 320 1140 320 1080 320C1020 320 960 320 900 320C840 320 780 320 720 320C660 320 600 320 540 320C480 320 420 320 360 320C300 320 240 320 180 320C120 320 60 320 30 320H0V64Z"
+            fill="#1E40AF"
+          />
+        </svg>
       </div>
-      {showTaskEdit && (
-        <TaskEdit
-          task={task}
-          onSave={saveHandler}
-          onCancel={cancelHandler}
-        />
-      )}
+
+      <div className="flex items-start justify-start p-10 relative z-10">
+        <h1 className="text-5xl font-bold text-blue-600">Welcome, User!</h1>
+      </div>
     </div>
+      </section>
   );
 };
 
-const App = () => {
-  const task = { id: 1, title: "Sample Task", description: "Task Description" };
-
-  return (
-    <div className="p-4">
-      <TaskCard task={task} />
-    </div>
-  );
-};
-
-export default App;
+export default TaskPage;

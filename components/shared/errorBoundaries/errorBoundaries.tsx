@@ -8,8 +8,8 @@ type ErrorBoundaryState = {
   error?: Error | null;
 };
 
-class ErrorBoundary extends React.Component<React.PropsWithChildren<{}>, ErrorBoundaryState> {
-  constructor(props: React.PropsWithChildren<{}>) {
+class ErrorBoundary extends React.Component<React.PropsWithChildren<any>, ErrorBoundaryState> {
+  constructor(props: React.PropsWithChildren<any>) {
     super(props);
     this.state = { hasError: false, error: null };
   }
