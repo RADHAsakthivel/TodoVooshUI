@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 
 function DropHereCard({onDrop}:{onDrop:()=>void}) {
@@ -6,11 +7,9 @@ function DropHereCard({onDrop}:{onDrop:()=>void}) {
     <div
       onDragEnter={() =>{
         setShowDrop(true)
-        // console.log("dragint")
       }}
       onDragLeave={() => {
         setShowDrop(false)
-        // console.log("dragout")
     }}
     onDrop={()=>{
         onDrop();

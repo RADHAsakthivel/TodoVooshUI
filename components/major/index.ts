@@ -1,5 +1,2 @@
-export {DragAndDrop} from "./dragAndDrop"
 export {Login} from "./login"
 export {SignUp} from "./signup"
-export {TaskDetail} from "./taskDetail"
-export {TaskEdit} from "./taskEdit"
