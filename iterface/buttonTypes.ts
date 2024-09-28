@@ -1,0 +1,1 @@
+export type ButtonType = "DEFAULT" | "EDIT" | "SAVE" | "CANCEL" | "DELETE"
