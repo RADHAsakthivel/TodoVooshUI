@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import {
   DndContext,
-  DragOverlay,
   closestCorners,
   KeyboardSensor,
   PointerSensor,
@@ -13,8 +12,6 @@ import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import Container from "./container";
 import { useDataContext } from "@/components";
 import { ITask, Task } from "@/iterface";
-import { createTasks } from "@/services";
-import {cookies} from "js-cookie"
 
 const defaultAnnouncements = {
   onDragStart(id) {
@@ -74,8 +71,6 @@ export default function DragAndDrop({ data }:props) {
     let updatedTasks = {...tasks}
     console.log("initialTask,updatedTasks=>",initialTask,updatedTasks)
     if(initialTask === null){
-      //TODO:should be uuid
-      const res =  createTasks(currentTask,cookies.get('userId'))
       currentTask.id = updatedTasks[currentTask.status].length.toString();
       updatedTasks[currentTask.status].push(currentTask);
       return

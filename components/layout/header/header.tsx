@@ -15,6 +15,11 @@ function Header() {
           <PiNotepadFill color="white" size={30} />
         </div>
         <div>
+          <Link href="/dashboard">
+            <Button type="DEFAULT" cssClass="mr-[10px]">
+              dashboard
+            </Button>
+          </Link>
           {router != "/login" && (
             <Link href="/login">
               <Button type="DEFAULT">login</Button>

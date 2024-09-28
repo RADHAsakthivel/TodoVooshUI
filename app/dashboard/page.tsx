@@ -1,17 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "../globals.css";
-import { TodoLayout } from "@/components/layout/layout";
 import { Board } from "@/components/major/board";
 import { DataProvider } from "@/components";
 import { getTasks } from "@/services/task";
 import { ClipLoader } from "react-spinners";
-import { GetStaticProps } from "next";
 
 function DashBoard() {
   const [isLoading, setIsLoading] = useState(true);
   const [tasks, setTasks] = useState({});
   useEffect(() => {
+    setIsLoading
     getTasks()
       .then((data) => {
         setTasks(data);

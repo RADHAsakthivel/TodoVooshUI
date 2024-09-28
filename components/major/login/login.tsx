@@ -97,7 +97,7 @@ function Login() {
           )}
           <div className="flex items-center justify-center mt-4">
             <span className="text-sm text-gray-600">
-              <b>Don't have an account?</b>
+              <b>Do not have an account?</b>
             </span>
             <a
               href="/signup"

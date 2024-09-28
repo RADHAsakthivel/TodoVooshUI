@@ -9,9 +9,8 @@ import {
   useDataContext,
 } from "@/components";
 import { ITask, Task } from "@/iterface";
-import { TaskEdit, TaskAdd } from "@/components";
+import { TaskAdd } from "@/components";
 
-const mockTwo: ITask[] = [];
 const mock:ITask[] = [
   {
     id: "1",
@@ -89,6 +88,7 @@ function Board() {
     dndKitShowHandler(true);
   };
   const addTaskOpenHandler = (e: any): void => {
+    e
     setShowAddTask(true);
   };
   const createTask = (): ITask => {
